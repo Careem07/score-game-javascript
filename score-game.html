@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+</head>
+
+<body style="text-align: center;" onkeypress="OnPress(event)">
+    <h1>score</h1>
+    <h1 id="score"> <i>0</i> </h1>
+
+    <div id="div" style="background-color: palevioletred; height: 20% ; width: 10% ; margin-left: 45%;">
+        <h1 id="num">0</h1>
+    </div>
+    <input type="button" id="start" value="Start Game" onclick="interval()">
+    <input type="button" id="end" value="End Game" onclick="StopInterval()">
+</body>
+
+
+</html>
+
+<script>
+
+    //const numbers =  ["1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"]
+    var score = 0
+
+    function interval() {
+        var index
+         id = setInterval(() => {
+            index = parseInt(Math.random() * 10)
+            document.getElementById("num").textContent = index
+            document.getElementById("div").style.backgroundColor = "palevioletred"
+        }
+            , 1000)
+    }
+
+    function StopInterval() {
+        clearInterval(id)
+        alert("Score: " + score);
+        score = 0;
+        document.getElementById("score").textContent = score
+    }
+
+
+    function OnPress(event) {
+
+        var input = String.fromCharCode(event.keyCode);
+        if (input.toLowerCase() == document.getElementById("num").textContent.toLowerCase()) {
+            document.getElementById("div").style.backgroundColor = "lightgreen";
+            score++
+            document.getElementById("score").textContent = score
+
+        }
+        else {
+            document.getElementById("div").style.backgroundColor = "red";
+            score--
+            document.getElementById("score").textContent = score
+        }
+
+
+
+
+    }
+
+</script>
